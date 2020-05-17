@@ -10,3 +10,5 @@ very important: there is a limitation to the video format which can be used for 
 use Avidemux (version 2.7.4) to prep your videos to the requirements: from 'Auto' menu, choose '720p', then from the left-side toolbox choose 'AAC (lav)' for Audio and 'MP4 Muxer' for Output Format.
 
 USE AT YOUR OWN RISK! and Enjoy!
+
+"Icon made by Freepic from www.flaticon.com"
