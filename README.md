@@ -11,4 +11,4 @@ use Avidemux (version 2.7.4) to prep your videos to the requirements: from 'Auto
 
 USE AT YOUR OWN RISK! and Enjoy!
 
-"Icon made by Freepic from www.flaticon.com"
+Icon made by Freepic from www.flaticon.com
