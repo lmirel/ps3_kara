@@ -1,6 +1,64 @@
 
 #include "util.h"
 
+struct Track *track_add (struct Track **entries, const char *uri, int idx, int st)
+{
+  if (!uri)
+    return NULL;
+    // Allocate memory for new node;
+    struct Track *list = *entries;
+    struct Track *link = (struct Track*) malloc (sizeof (struct Track));
+    if (!link)
+    {
+        //NPrintf ("!fm_job_add malloc failed for %d>%s\n", dir, fn);
+        return NULL;
+    }
+    //
+    //Nprintf("adding %s\n", uri);
+    link->uri = strdup (uri);
+    link->index = idx;
+    link->streamType = st;
+    //
+    link->prev = NULL;
+    link->next = NULL;
+    // If head is empty, create new list
+    if (list == NULL)
+    {
+        *entries = link;
+    }
+    else
+    {
+        struct Track *current = list;
+        while (current->next && strcasecmp (current->uri, uri) < 0)
+          current = current->next;
+        //
+        if (strcasecmp (current->uri, uri) < 0)
+        {
+          //Nprintf ("adding after %s\n", current->uri);
+          struct Track *next = current->next;
+          if (next)
+            next->prev = link;
+          current->next = link;
+          link->prev = current;
+          link->next = next;
+        }
+        else
+        {
+          //Nprintf ("adding before %s\n", current->uri);
+          struct Track *prev = current->prev;
+          if (prev)
+            prev->next = link;
+          else
+            //new head
+            *entries = link;
+          current->prev = link;
+          link->prev = prev;
+          link->next = current;
+        }
+    }
+    return link;
+}
+
 struct Subs *subs_get (struct Subs *head, long cts)
 {
   struct Subs *node;
